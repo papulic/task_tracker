@@ -1,0 +1,45 @@
+{% extends 'board/base.html' %}
+{% block title %} - Add a New Note{% endblock %}
+{% block projects_active %}active{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-sm-12 col-md-7">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3>Update Note</h3>
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+                    <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% include 'board/form_template.html' %}
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-success">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-md-5">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3>What is Notes?</h3>
+                    <p>Notes is an app that allows you to upload and store all of your notes to the database.</p>
+                    
+                    
+                   
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

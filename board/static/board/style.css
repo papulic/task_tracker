@@ -1,0 +1,39 @@
+body{
+    background: #dee0e2;
+}
+.navbar{
+    border-radius: 0;
+}
+.lead{
+    margin-left: 15px;
+    }
+#details{
+    margin-left: 15px;
+    margin-bottom: 10px;
+}
+#album_images{
+    margin-top: 15px;
+}
+#album_title{
+    font-size:medium;
+    margin-top: -20px;
+}
+a{
+    color: #000000;
+}
+#edit_album {
+    background-color: #737373;
+}
+#pad {
+    word-break:break-all;  
+}
+.right {
+    border-right: 1px solid #ccc;
+}
+
+#firmware {
+    background-color: #06e055;
+}
+#sqa {
+    background-color: #8cd1ea;
+}

@@ -1,0 +1,206 @@
+{% extends 'board/base.html' %}
+{% block title %} - Details {% endblock %}
+{% block projects_active %}active{% endblock %}
+{% block content %}
+
+<div class="col-sm-12" style="padding-bottom: 15px;">
+                <br>
+                <a href="{% url 'board:note-add' project_id %}">
+                    <button type="button" class="btn btn-success">
+                        <span class="glyphicon glyphicon-plus"></span>&nbsp; Add Task
+                    </button>
+                </a>
+            </div>
+{% block BACKLOG %}
+<div class="col-md-3 col-sm-6 right"><h2><center>BACKLOG</center></h2>
+
+<div class="albums-container container-fluid">
+
+
+        {% for note in notes %}
+            {% if note.tags == 'backlog' %}
+                    {% if note.group == 'firmware' %}
+                    <div id="firmware" class="thumbnail">
+                        {% else %}
+                        <div id="sqa" class="thumbnail">
+                            {% endif %}
+                        <h4>{{ note.group }}</h4>
+       <h3 id="pad">{{ note.task }}</h3>
+                        
+                            <p id="pad">
+     {{note.description }}
+                                </p>
+                            <button  type="button" class="btn btn-default btn-sm">
+                        <a class="glyphicon glyphicon-pencil" href="{% url 'board:note-update' project_id note.id %}" style="text-decoration: none;"> Edit</a>
+                        </button>
+                            <form action="{% url 'board:note-delete' project_id note.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+            <input type="hidden" name="note_id" value="{{ note.id }}">
+            <button type="submit" class="btn btn-default btn-sm" style="float: right;" onclick="clicked(event)">
+                <span class="glyphicon glyphicon-trash"></span>
+            </button>
+            </form>
+                            </div>
+    {% endif %}
+                  {% endfor %}
+                            </div></div></div>
+
+
+{% endblock %}
+    {% block PREPARING %}
+    <div class="col-md-3 col-sm-6 right"><h2><center>PREPARING</center></h2>
+
+<div class="albums-container container-fluid">
+
+
+        {% for note in projects.note_set.all %}
+            {% if note.tags == 'preparing' %}
+                    
+                    {% if note.group == 'firmware' %}
+                    <div id="firmware" class="thumbnail">
+                        {% else %}
+                        <div id="sqa" class="thumbnail">
+                            {% endif %}
+                        <h4>{{ note.group }}</h4>
+       <h3 id="pad">{{ note.task }}</h3>
+                        
+                            <p id="pad">
+     {{note.description }}
+                                </p>
+                         <button type="button" class="btn btn-default btn-sm">
+                        <a class="glyphicon glyphicon-pencil" href="{% url 'board:note-update' project_id note.id %}" style="text-decoration: none;"> Edit</a>
+                        </button>
+                        <form action="{% url 'board:note-delete' project_id note.id %}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <input type="hidden" name="note_id" value="{{ note_id }}">
+            <button type="submit" class="btn btn-default btn-sm" style="float: right;" onclick="clicked(event)">
+                <span class="glyphicon glyphicon-trash"></span>
+            </button>
+            </form>
+                            </div>
+    {% endif %}
+                  {% endfor %}
+                            </div></div></div>
+
+
+{% endblock %}
+{% block IMPLEMENT %}
+    <div class="col-md-3 col-sm-6 right"><h2><center>IMPLEMENT</center></h2>
+
+<div class="albums-container container-fluid">
+
+
+        {% for note in projects.note_set.all %}
+            {% if note.tags == 'implement' %}
+                    
+                    {% if note.group == 'firmware' %}
+                    <div id="firmware" class="thumbnail">
+                        {% else %}
+                        <div id="sqa" class="thumbnail">
+                            {% endif %}
+                        <h4>{{ note.group }}</h4>
+       <h3 id="pad">{{ note.task }}</h3>
+                        
+                            <p id="pad">
+     {{note.description }}
+                                </p>
+                         <button type="button" class="btn btn-default btn-sm">
+                        <a class="glyphicon glyphicon-pencil" href="{% url 'board:note-update' project_id note.id %}" style="text-decoration: none;"> Edit</a>
+                        </button>
+                        <form action="{% url 'board:note-delete' project_id note.id %}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <input type="hidden" name="note_id" value="{{ note_id }}">
+            <button type="submit" class="btn btn-default btn-sm" style="float: right;" onclick="clicked(event)">
+                <span class="glyphicon glyphicon-trash"></span>
+            </button>
+            </form>
+                            </div>
+    {% endif %}
+                  {% endfor %}
+                            </div></div></div>
+
+
+{% endblock %}
+{% block TESTING %}
+    <div class="col-md-3 col-sm-6 right"><h2><center>TESTING</center></h2>
+
+<div class="albums-container container-fluid">
+
+
+        {% for note in projects.note_set.all %}
+            {% if note.tags == 'testing' %}
+                    
+                    {% if note.group == 'firmware' %}
+                    <div id="firmware" class="thumbnail">
+                        {% else %}
+                        <div id="sqa" class="thumbnail">
+                            {% endif %}
+                        <h4>{{ note.group }}</h4>
+       <h3 id="pad">{{ note.task }}</h3>
+                        
+                            <p id="pad">
+     {{note.description }}
+                                </p>
+                         <button type="button" class="btn btn-default btn-sm">
+                        <a class="glyphicon glyphicon-pencil" href="{% url 'board:note-update' project_id note.id %}" style="text-decoration: none;"> Edit</a>
+                        </button>
+                        <form action="{% url 'board:note-delete' project_id note.id %}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <input type="hidden" name="note_id" value="{{ note_id }}">
+            <button type="submit" class="btn btn-default btn-sm" style="float: right;" onclick="clicked(event)">
+                <span class="glyphicon glyphicon-trash"></span>
+            </button>
+            </form>
+                            </div>
+    {% endif %}
+                  {% endfor %}
+                            </div></div></div>
+
+
+{% endblock %}
+{% block DONE %}
+<div class="col-xs-12">
+    <h2><center>DONE</center></h2>
+
+<div class="albums-container container">
+
+
+        {% for note in projects.note_set.all %}
+            {% if note.tags == 'done' %}
+                    
+                    {% if note.group == 'firmware' %}
+                    <div id="firmware" class="thumbnail">
+                        {% else %}
+                        <div id="sqa" class="thumbnail">
+                            {% endif %}
+                        <h4>{{ note.group }}</h4>
+       <h3 id="pad">{{ note.task }}</h3>
+                        
+                            <p id="pad">
+     {{note.description }}
+                                </p>
+                         <button type="button" class="btn btn-default btn-sm">
+                        <a class="glyphicon glyphicon-pencil" href="{% url 'board:note-update' project_id note.id %}" style="text-decoration: none;"> Edit</a>
+                        </button>
+                        <form action="{% url 'board:note-delete' project_id note.id %}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <input type="hidden" name="note_id" value="{{ note_id }}">
+            <button type="submit" class="btn btn-default btn-sm" style="float: right;">
+                <span class="glyphicon glyphicon-trash"></span>
+            </button>
+            </form>
+                            </div>
+    {% endif %}
+                  {% endfor %}
+                            </div></div></div>
+
+
+{% endblock %}
+
+        <script>
+function clicked(e)
+{
+    if(!confirm('Are you sure?'))e.preventDefault();
+}
+</script>
+    {% endblock %}

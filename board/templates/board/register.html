@@ -1,0 +1,52 @@
+{% extends 'board/base_visitor.html' %}
+{% block title %} - Register{% endblock %}
+{% block register_active %}active{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-sm-12 col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3>Register for an Account</h3>
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+                    <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% include 'board/form_template.html' %}
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-success">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="panel-footer">
+                    Already have an account? <a href="{% url 'board:login_user' %}">Click here</a> to log in.
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-5">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3>What is Task Tracker?</h3>
+                    <p>Task Tracker is an app that allows you to upload and store all of your tasks to the database.</p>
+                    <h3>How do I add tasks?</h3>
+                    <p>First, create a new project on index page, after you register. Once a project is created you will be able to add tasks.</p>
+                    <h3>Some Task Tracker features?</h3>
+                    <ul>
+                        <li>Use it as individual developer or with your team</li>
+                        <li>Assign task to firmware or QA team</li>
+                        <li>No limit for number of projects</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
+
