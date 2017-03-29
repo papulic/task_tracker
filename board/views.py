@@ -39,13 +39,21 @@ def create_project(request):
     if not request.user.is_authenticated():
         return render(request, 'board/login.html')
     else:
+        projects = Project.objects.filter(user=request.user)
         form = ProjectForm(request.POST or None)
+        projects_list = []
+        for i in projects:
+            projects_list.append(str(i))
         if request.method == 'POST':
             if form.is_valid():
                 project = form.save(commit=False)
                 project.user = request.user
-                project.save()
-                return HttpResponseRedirect(reverse('board:index'))
+                if str(project) in projects_list:
+                    messages.success(request, "This project already exists!")
+                    return HttpResponseRedirect(reverse('board:index'))
+                else:
+                    project.save()
+                    return HttpResponseRedirect(reverse('board:index'))
         context = {
             "form": form,
             
