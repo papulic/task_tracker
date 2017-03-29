@@ -2,12 +2,24 @@
 {% block title %} - Details {% endblock %}
 {% block projects_active %}active{% endblock %}
 {% block content %}
-
+{% if messages %}
+<ul class="messages">
+  {% for message in messages %}
+  <li style="color:red;" {% if message.tags == "success" %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
 <div class="col-sm-12" style="padding-bottom: 15px;">
                 <br>
                 <a href="{% url 'board:note-add' project_id %}">
-                    <button type="button" class="btn btn-success">
+                    <button type="button" class="btn btn-info">
                         <span class="glyphicon glyphicon-plus"></span>&nbsp; Add Task
+                    </button>
+                </a>
+   
+                <a href="{% url 'board:note-delete-all' project_id %}">
+                    <button type="button" class="btn btn-danger" style="float: right;" onclick="clicked(event)">
+                        <span class="glyphicon glyphicon-minus"></span>&nbsp; Delete all tasks
                     </button>
                 </a>
             </div>
