@@ -10,6 +10,8 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 
 
+
+
 def index(request):
     if not request.user.is_authenticated():
         return render(request, 'board/login.html')
@@ -38,12 +40,12 @@ def create_project(request):
         return render(request, 'board/login.html')
     else:
         form = ProjectForm(request.POST or None)
-        
-        if form.is_valid():
-            project = form.save(commit=False)
-            project.user = request.user
-            project.save()
-            return HttpResponseRedirect(reverse('board:index'))
+        if request.method == 'POST':
+            if form.is_valid():
+                project = form.save(commit=False)
+                project.user = request.user
+                project.save()
+                return HttpResponseRedirect(reverse('board:index'))
         context = {
             "form": form,
             
@@ -55,16 +57,24 @@ def create_note(request, project_id):
     form = NoteForm(request.POST or None)
     projects = get_object_or_404(Project, pk=project_id)
     notes = Note.objects.filter(project=project_id)
+    notes_list = []
+    for i in notes:
+        notes_list.append(str(i))
     if request.method == 'POST':
         if form.is_valid():
             note = form.save(commit=False)
             note.project = projects
-            note.save()
-            return render(request, 'board/notes.html', {
-                'projects': projects,
-                'project_id': project_id,
-                'notes': notes
-            })
+            if str(note) in notes_list:
+                messages.success(request, "This task already exists!")
+                return HttpResponseRedirect('/board/{project_id}'.format(project_id=project_id))
+            else:
+                note.save()
+                return HttpResponseRedirect('/board/{project_id}'.format(project_id=project_id))
+            # return render(request, 'board/notes.html', {
+            #     'projects': projects,
+            #     'project_id': project_id,
+            #     'notes': notes
+            # })
     context = {
         "form": form,
         'projects': projects,
@@ -72,7 +82,7 @@ def create_note(request, project_id):
         'notes': notes
     }
     return render(request, 'board/note_form.html', context)
-
+    
 
 def note_update(request, project_id, note_id):
     instance = Note.objects.get(pk=note_id)
@@ -114,6 +124,14 @@ def note_delete(request, project_id, note_id):
     return render(request, 'board/notes.html', {"project": project, "notes": notes,
                                                 "project_id": project_id})
 
+def delete_all(request, project_id):
+    project = get_object_or_404(Project, pk=project_id)
+    notes = Note.objects.filter(project=project_id)
+    for note in notes:
+        note.delete()
+    notes = Note.objects.filter(project=project_id)
+    return render(request, 'board/notes.html', {"project": project, "notes": notes,
+                                                "project_id": project_id})
 
 
 def login_user(request):
