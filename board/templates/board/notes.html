@@ -45,6 +45,48 @@
                             <button  type="button" class="btn btn-default btn-sm">
                         <a class="glyphicon glyphicon-pencil" href="{% url 'board:note-update' project_id note.id %}" style="text-decoration: none;"> Edit</a>
                         </button>
+                            
+                            
+                            
+                            
+                            <form action="{% url 'board:note-backlog' project_id note.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+            <input type="hidden" name="note_id" value="{{ note.id }}">
+            <button type="submit" class="btn btn-warning btn-xs" style="color: #000000;">Backlog
+                <span class="glyphicon glyphicon-pause"></span>
+            </button>
+            </form>
+                            <form action="{% url 'board:note-preparing' project_id note.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+            <input type="hidden" name="note_id" value="{{ note.id }}">
+            <button type="submit" class="btn btn-warning btn-xs" style="color: #000000;">Preparing
+                <span class="glyphicon glyphicon-cog"></span>
+            </button>
+            </form>
+                            <form action="{% url 'board:note-implement' project_id note.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+            <input type="hidden" name="note_id" value="{{ note.id }}">
+            <button type="submit" class="btn btn-warning btn-xs" style="color: #000000;">Implement
+                <span class="glyphicon glyphicon-road"></span>
+            </button>
+            </form>
+                            <form action="{% url 'board:note-testing' project_id note.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+            <input type="hidden" name="note_id" value="{{ note.id }}">
+            <button type="submit" class="btn btn-warning btn-xs" style="color: #000000;">Testing
+                <span class="glyphicon glyphicon-play"></span>
+            </button>
+            </form>
+                            <form action="{% url 'board:note-done' project_id note.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+            <input type="hidden" name="note_id" value="{{ note.id }}">
+            <center><button type="submit" class="btn btn-success btn-xs" style="color: #000000;">Done
+                <span class="glyphicon glyphicon-ok"></span>
+            </button></center>
+            </form>
+                            
+                            
+                            
                             <form action="{% url 'board:note-delete' project_id note.id %}" method="post" style="display: inline;">
                                 {% csrf_token %}
             <input type="hidden" name="note_id" value="{{ note.id }}">
@@ -82,6 +124,44 @@
                          <button type="button" class="btn btn-default btn-sm">
                         <a class="glyphicon glyphicon-pencil" href="{% url 'board:note-update' project_id note.id %}" style="text-decoration: none;"> Edit</a>
                         </button>
+                            
+                            <form action="{% url 'board:note-backlog' project_id note.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+            <input type="hidden" name="note_id" value="{{ note.id }}">
+            <button type="submit" class="btn btn-warning btn-xs" style="color: #000000;">Backlog
+                <span class="glyphicon glyphicon-pause"></span>
+            </button>
+            </form>
+                            <form action="{% url 'board:note-preparing' project_id note.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+            <input type="hidden" name="note_id" value="{{ note.id }}">
+            <button type="submit" class="btn btn-warning btn-xs" style="color: #000000;">Preparing
+                <span class="glyphicon glyphicon-cog"></span>
+            </button>
+            </form>
+                            <form action="{% url 'board:note-implement' project_id note.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+            <input type="hidden" name="note_id" value="{{ note.id }}">
+            <button type="submit" class="btn btn-warning btn-xs" style="color: #000000;">Implement
+                <span class="glyphicon glyphicon-road"></span>
+            </button>
+            </form>
+                            <form action="{% url 'board:note-testing' project_id note.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+            <input type="hidden" name="note_id" value="{{ note.id }}">
+            <button type="submit" class="btn btn-warning btn-xs" style="color: #000000;">Testing
+                <span class="glyphicon glyphicon-play"></span>
+            </button>
+            </form>
+                            <form action="{% url 'board:note-done' project_id note.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+            <input type="hidden" name="note_id" value="{{ note.id }}">
+            <center><button type="submit" class="btn btn-success btn-xs" style="color: #000000;">Done
+                <span class="glyphicon glyphicon-ok"></span>
+            </button></center>
+            </form>
+                            
+                            
                         <form action="{% url 'board:note-delete' project_id note.id %}" method="post" style="display: inline;">
             {% csrf_token %}
             <input type="hidden" name="note_id" value="{{ note_id }}">
@@ -119,6 +199,43 @@
                          <button type="button" class="btn btn-default btn-sm">
                         <a class="glyphicon glyphicon-pencil" href="{% url 'board:note-update' project_id note.id %}" style="text-decoration: none;"> Edit</a>
                         </button>
+                            <form action="{% url 'board:note-backlog' project_id note.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+            <input type="hidden" name="note_id" value="{{ note.id }}">
+            <button type="submit" class="btn btn-warning btn-xs" style="color: #000000;">Backlog
+                <span class="glyphicon glyphicon-pause"></span>
+            </button>
+            </form>
+                            <form action="{% url 'board:note-preparing' project_id note.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+            <input type="hidden" name="note_id" value="{{ note.id }}">
+            <button type="submit" class="btn btn-warning btn-xs" style="color: #000000;">Preparing
+                <span class="glyphicon glyphicon-cog"></span>
+            </button>
+            </form>
+                            <form action="{% url 'board:note-implement' project_id note.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+            <input type="hidden" name="note_id" value="{{ note.id }}">
+            <button type="submit" class="btn btn-warning btn-xs" style="color: #000000;">Implement
+                <span class="glyphicon glyphicon-road"></span>
+            </button>
+            </form>
+                            <form action="{% url 'board:note-testing' project_id note.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+            <input type="hidden" name="note_id" value="{{ note.id }}">
+            <button type="submit" class="btn btn-warning btn-xs" style="color: #000000;">Testing
+                <span class="glyphicon glyphicon-play"></span>
+            </button>
+            </form>
+                            <form action="{% url 'board:note-done' project_id note.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+            <input type="hidden" name="note_id" value="{{ note.id }}">
+            <center><button type="submit" class="btn btn-success btn-xs" style="color: #000000;">Done
+                <span class="glyphicon glyphicon-ok"></span>
+            </button></center>
+            </form>
+                            
+                            
                         <form action="{% url 'board:note-delete' project_id note.id %}" method="post" style="display: inline;">
             {% csrf_token %}
             <input type="hidden" name="note_id" value="{{ note_id }}">
@@ -156,6 +273,44 @@
                          <button type="button" class="btn btn-default btn-sm">
                         <a class="glyphicon glyphicon-pencil" href="{% url 'board:note-update' project_id note.id %}" style="text-decoration: none;"> Edit</a>
                         </button>
+                            
+                            <form action="{% url 'board:note-backlog' project_id note.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+            <input type="hidden" name="note_id" value="{{ note.id }}">
+            <button type="submit" class="btn btn-warning btn-xs" style="color: #000000;">Backlog
+                <span class="glyphicon glyphicon-pause"></span>
+            </button>
+            </form>
+                            <form action="{% url 'board:note-preparing' project_id note.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+            <input type="hidden" name="note_id" value="{{ note.id }}">
+            <button type="submit" class="btn btn-warning btn-xs" style="color: #000000;">Preparing
+                <span class="glyphicon glyphicon-cog"></span>
+            </button>
+            </form>
+                            <form action="{% url 'board:note-implement' project_id note.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+            <input type="hidden" name="note_id" value="{{ note.id }}">
+            <button type="submit" class="btn btn-warning btn-xs" style="color: #000000;">Implement
+                <span class="glyphicon glyphicon-road"></span>
+            </button>
+            </form>
+                            <form action="{% url 'board:note-testing' project_id note.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+            <input type="hidden" name="note_id" value="{{ note.id }}">
+            <button type="submit" class="btn btn-warning btn-xs" style="color: #000000;">Testing
+                <span class="glyphicon glyphicon-play"></span>
+            </button>
+            </form>
+                            <form action="{% url 'board:note-done' project_id note.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+            <input type="hidden" name="note_id" value="{{ note.id }}">
+            <center><button type="submit" class="btn btn-success btn-xs" style="color: #000000;">Done
+                <span class="glyphicon glyphicon-ok"></span>
+            </button></center>
+            </form>
+                            
+                            
                         <form action="{% url 'board:note-delete' project_id note.id %}" method="post" style="display: inline;">
             {% csrf_token %}
             <input type="hidden" name="note_id" value="{{ note_id }}">
