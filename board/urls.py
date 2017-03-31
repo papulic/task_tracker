@@ -17,6 +17,11 @@ urlpatterns = [
     url(r'^login_user/$', views.login_user, name='login_user'),
     url(r'^logout_user/$', views.logout_user, name='logout_user'),
     url(r'^password/$', views.change_password, name='change_password'),
+    url(r'^(?P<project_id>[0-9]+)/done/(?P<note_id>[0-9]+)/$', views.note_done, name='note-done'),
+    url(r'^(?P<project_id>[0-9]+)/testing/(?P<note_id>[0-9]+)/$', views.note_testing, name='note-testing'),
+    url(r'^(?P<project_id>[0-9]+)/implement/(?P<note_id>[0-9]+)/$', views.note_implement, name='note-implement'),
+    url(r'^(?P<project_id>[0-9]+)/preparing/(?P<note_id>[0-9]+)/$', views.note_preparing, name='note-preparing'),
+    url(r'^(?P<project_id>[0-9]+)/backlog/(?P<note_id>[0-9]+)/$', views.note_backlog, name='note-backlog'),
 
 
 ]
