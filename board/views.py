@@ -101,19 +101,20 @@ def note_update(request, project_id, note_id):
         note = form.save(commit=False)
         note.project = projects
         note.save()
-        return render(request, 'board/notes.html', {
-            'projects': projects,
-            'project_id': project_id,
-            'note_id': note_id,
-            'notes': notes
-        })
+        return HttpResponseRedirect('/board/{project_id}'.format(project_id=project_id))
+        # return render(request, 'board/notes.html', {
+        #     'projects': projects,
+        #     'project_id': project_id,
+        #     'note_id': note_id,
+        #     'notes': notes
+        # })
     context = {
         "form": form,
         'project_id': project_id,
         'note_id': note_id,
     }
     return render(request, 'board/note_update_form.html', context)
-
+    
 
 def delete_project(request, project_id):
     project = Project.objects.get(pk=project_id)
@@ -129,9 +130,9 @@ def note_delete(request, project_id, note_id):
     note = Note.objects.get(pk=note_id)
     note.delete()
     notes = Note.objects.filter(project=project_id)
-    return render(request, 'board/notes.html', {"project": project, "notes": notes,
-                                                "project_id": project_id})
-
+    # return render(request, 'board/notes.html', {"project": project, "notes": notes,
+    #                                             "project_id": project_id})
+    return HttpResponseRedirect('/board/{project_id}'.format(project_id=project_id))
 def delete_all(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     notes = Note.objects.filter(project=project_id)
@@ -204,3 +205,33 @@ def register(request):
         "form": form,
     }
     return render(request, 'board/register.html', context)
+
+def note_done(request, project_id, note_id):
+    note = Note.objects.get(pk=note_id)
+    note.tags = "done"
+    note.save()
+    return HttpResponseRedirect('/board/{project_id}'.format(project_id=project_id))
+
+def note_testing(request, project_id, note_id):
+    note = Note.objects.get(pk=note_id)
+    note.tags = "testing"
+    note.save()
+    return HttpResponseRedirect('/board/{project_id}'.format(project_id=project_id))
+
+def note_implement(request, project_id, note_id):
+    note = Note.objects.get(pk=note_id)
+    note.tags = "implement"
+    note.save()
+    return HttpResponseRedirect('/board/{project_id}'.format(project_id=project_id))
+
+def note_preparing(request, project_id, note_id):
+    note = Note.objects.get(pk=note_id)
+    note.tags = "preparing"
+    note.save()
+    return HttpResponseRedirect('/board/{project_id}'.format(project_id=project_id))
+
+def note_backlog(request, project_id, note_id):
+    note = Note.objects.get(pk=note_id)
+    note.tags = "backlog"
+    note.save()
+    return HttpResponseRedirect('/board/{project_id}'.format(project_id=project_id))
