@@ -151,8 +151,7 @@ def login_user(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                projects = Project.objects.filter(user=request.user)
-                return render(request, 'board/index.html', {'projects': projects})
+                return HttpResponseRedirect('/board')
             else:
                 return render(request, 'board/login.html', {'error_message': 'Your account has been disabled'})
         else:
